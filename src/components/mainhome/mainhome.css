@@ -1,0 +1,115 @@
+.coverall-mainhome{
+  min-height:100vh;
+  width:100%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:20px;
+
+  background:
+  linear-gradient(135deg,#141e30,#243b55);
+}
+
+.home-card{
+  width:100%;
+  max-width:500px;
+
+  background:white;
+
+  padding:40px;
+
+  border-radius:25px;
+
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.2);
+}
+
+.home-card h1{
+  text-align:center;
+  font-size:38px;
+  color:#0f172a;
+}
+
+.home-card p{
+  text-align:center;
+  color:#64748b;
+  margin-top:-10px;
+}
+
+.home-card select{
+  height:55px;
+
+  border:none;
+  outline:none;
+
+  background:#f1f5f9;
+
+  border-radius:12px;
+
+  padding-left:15px;
+
+  font-size:16px;
+}
+
+.home-card a{
+  width:100%;
+}
+
+
+.home-card button{
+  width:100%;
+  height:55px;
+
+  border:none;
+
+  border-radius:12px;
+
+  color:white;
+
+  font-size:16px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.home-card button:hover{
+  transform:translateY(-2px);
+}
+
+.single-btn{
+  background:#2563eb;
+}
+
+.create-btn{
+  background:#16a34a;
+}
+
+.join-btn{
+  background:#ea580c;
+}
+
+.multiplayer-btns{
+  display:flex;
+  gap:15px;
+}
+
+
+
+@media(max-width:768px){
+
+  .home-card{
+    padding:30px 20px;
+  }
+
+  .multiplayer-btns{
+    flex-direction:column;
+  }
+
+}

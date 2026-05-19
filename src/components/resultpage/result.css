@@ -1,0 +1,124 @@
+/* ===== RESULT WRAPPER ===== */
+.result {
+  width: 100%;
+ 
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+
+  padding: 20px;
+
+  background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+/* ===== RESULT CARD ===== */
+.result > div,
+.result {
+  width: 100%;
+  max-width: 600px;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+
+  border-radius: 20px;
+
+  padding: 40px 30px;
+
+  text-align: center;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+
+  color: white;
+
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===== TITLES ===== */
+.result h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.result h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.result h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* ===== PLAYER SCORE BOXES (MULTIPLAYER LOOK) ===== */
+.result h2 {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+/* ===== WINNER TEXT ===== */
+.result h1:last-of-type {
+  color: #22c55e;
+  font-size: 26px;
+  margin-top: 20px;
+}
+
+/* ===== BUTTON ===== */
+.result button {
+  margin-top: 25px;
+
+  width: 100%;
+  height: 50px;
+
+  border: none;
+  border-radius: 12px;
+padding:10px 20px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.result button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .result > div,
+  .result {
+    padding: 25px 15px;
+  }
+
+  .result h1 {
+    font-size: 22px;
+  }
+
+  .result h2 {
+    font-size: 16px;
+  }
+}
