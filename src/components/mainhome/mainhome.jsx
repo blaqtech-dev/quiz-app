@@ -4,14 +4,16 @@ import './mainhome.css'
 
 export function MainHome() {
 
-  const [category, setCategory] = useState(9)
+  const [category, setCategory] = useState("9")
 
   return (
     <div className='coverall-mainhome'>
 
       <div className='home-card'>
-<h2>Brain <span>Bolt</span></h2>
-      
+
+        <h2>
+          Brain <span>Bolt</span>
+        </h2>
 
         <p>
           Test your intellect against friends
@@ -22,15 +24,15 @@ export function MainHome() {
           onChange={(e) => setCategory(e.target.value)}
         >
           <option value='9'>General Knowledge</option>
-      <option value='10'>books</option>
-       <option value='11'>film</option>
-       <option value='13'>Musicals & Theatres</option>
-       <option value='20'>Mythology</option>
+          <option value='10'>Books</option>
+          <option value='11'>Film</option>
+          <option value='13'>Musicals & Theatres</option>
+          <option value='20'>Mythology</option>
           <option value='18'>Computer Science</option>
           <option value='23'>History</option>
           <option value='15'>Video Games</option>
-          <option value='28'>vehicles</option>
-          <option value='30'>gadgets</option>
+          <option value='28'>Vehicles</option>
+          <option value='30'>Gadgets</option>
           <option value='27'>Animals</option>
           <option value='31'>Anime & Manga</option>
           <option value='12'>Music</option>
@@ -47,8 +49,11 @@ export function MainHome() {
         </Link>
 
         {/* MULTIPLAYER */}
-        <Link to='/lobby'>
-          <button className='multi-btn'style={{color:'#0a3081'}}>
+        <Link to={`/lobby?category=${category}`}>
+          <button
+            className='multi-btn'
+            style={{ color: '#0a3081' }}
+          >
             Multiplayer
           </button>
         </Link>

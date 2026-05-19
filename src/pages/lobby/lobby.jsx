@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 
-import { useNavigate } from "react-router-dom"
+import {
+  useNavigate,
+  useSearchParams
+} from "react-router-dom"
 
 import {
   doc,
@@ -22,31 +25,45 @@ export function Lobby() {
 
   const navigate = useNavigate()
 
-  // ================= CREATE ROOM =================
+  const [searchParams] = useSearchParams()
+
+
+   const category =
+  searchParams.get("category") || "9"
+
+ 
   const createRoom = async () => {
 
     const randomRoom =
       Math.random().toString(36).substring(2, 8)
 
     await setDoc(doc(db, "rooms", randomRoom), {
+
       player1Score: 0,
       player2Score: 0,
+
       player2Joined: false,
+
+      category: category,
+
       questions: [],
+
       createdAt: Date.now()
     })
 
     setCreatedRoom(randomRoom)
+
     setWaiting(true)
   }
 
-  // ================= WAIT FOR PLAYER 2 =================
+ 
   useEffect(() => {
 
     if (!createdRoom) return
 
     const unsub = onSnapshot(
       doc(db, "rooms", createdRoom),
+
       (docSnap) => {
 
         const data = docSnap.data()
@@ -54,7 +71,7 @@ export function Lobby() {
         if (data?.player2Joined) {
 
           navigate(
-            `/quiz/${createdRoom}?player=1&category=18`
+            `/quiz/${createdRoom}?player=1&category=${data.category}`
           )
         }
       }
@@ -64,31 +81,36 @@ export function Lobby() {
 
   }, [createdRoom])
 
-  // ================= JOIN ROOM =================
+  
   const joinRoom = async () => {
 
     if (!roomId) return
 
-    const roomRef = doc(db, "rooms", roomId)
+    const roomRef =
+      doc(db, "rooms", roomId)
 
-    const roomSnap = await getDoc(roomRef)
+    const roomSnap =
+      await getDoc(roomRef)
 
     if (!roomSnap.exists()) {
+
       alert("Room does not exist")
+
       return
     }
 
-    // MARK PLAYER 2 AS JOINED
+    const roomData = roomSnap.data()
+
     await updateDoc(roomRef, {
       player2Joined: true
     })
 
     navigate(
-      `/quiz/${roomId}?player=2&category=18`
+      `/quiz/${roomId}?player=2&category=${roomData.category}`
     )
   }
 
-  // ================= COPY ROOM ID =================
+
   const copyRoomId = async () => {
 
     await navigator.clipboard.writeText(createdRoom)
@@ -96,7 +118,6 @@ export function Lobby() {
     alert("Room ID copied!")
   }
 
-  // ================= WAITING SCREEN =================
   if (waiting) {
 
     return (
@@ -104,7 +125,9 @@ export function Lobby() {
 
         <div className="lobby-card">
 
-          <h1>Waiting For Player 2...</h1>
+          <h1>
+            Waiting For Player 2...
+          </h1>
 
           <h2 className="room-code">
             {createdRoom}
@@ -122,7 +145,7 @@ export function Lobby() {
     )
   }
 
-  // ================= NORMAL SCREEN =================
+
   return (
     <div className="lobby">
 
