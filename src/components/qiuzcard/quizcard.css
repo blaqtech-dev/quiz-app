@@ -13,10 +13,14 @@
 
 .quiz-card h2{
   margin-bottom:20px;
+  font-size:15px;
+}
+.quiz-card h3{
+    font-size:15px;
 }
 
 .quiz-card h1{
-  font-size:30px;
+  font-size:20px;
 
   margin-top:30px;
   margin-bottom:30px;
@@ -58,7 +62,7 @@
 
   text-align:left;
 
-  font-size:16px;
+  font-size:14px;
 }
 
 .correct{

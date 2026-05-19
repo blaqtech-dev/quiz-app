@@ -54,7 +54,11 @@
 
   padding-left:15px;
 
-  font-size:16px;
+  font-size:14px;
+}
+
+.home-card select option{
+    font-size:14px;
 }
 
 .home-card a{
@@ -101,12 +105,27 @@
 }
 
 
+.home-card h2{
+    font-size:30px;
+    text-align:center;
+    margin-bottom:20px;
+}
+.home-card span{
+    color:#2563eb;
+}
 
 @media(max-width:768px){
 
   .home-card{
     padding:30px 20px;
   }
+
+  .home-card h2{
+    font-size:25px;
+}
+   .home-card p{
+     font-size:21px;
+   }
 
   .multiplayer-btns{
     flex-direction:column;

@@ -10,8 +10,8 @@ export function MainHome() {
     <div className='coverall-mainhome'>
 
       <div className='home-card'>
-
-        <h1>Quiz Multiplayer</h1>
+<h2>Brain <span>Bolt</span></h2>
+      
 
         <p>
           Test your intellect against friends
