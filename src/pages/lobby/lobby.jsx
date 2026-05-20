@@ -37,19 +37,22 @@ export function Lobby() {
     const randomRoom =
       Math.random().toString(36).substring(2, 8)
 
-    await setDoc(doc(db, "rooms", randomRoom), {
+   await setDoc(doc(db, "rooms", randomRoom), {
 
-      player1Score: 0,
-      player2Score: 0,
+  player1Score: 0,
+  player2Score: 0,
 
-      player2Joined: false,
+  player1Finished: false,
+  player2Finished: false,
 
-      category: category,
+  player2Joined: false,
 
-      questions: [],
+  category: category,
 
-      createdAt: Date.now()
-    })
+  questions: [],
+
+  createdAt: Date.now()
+})
 
     setCreatedRoom(randomRoom)
 

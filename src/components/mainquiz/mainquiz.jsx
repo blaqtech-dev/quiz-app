@@ -38,7 +38,7 @@ export function MainQuiz() {
 
   const hasFetched = useRef(false)
 
-  // ================= FETCH QUESTIONS =================
+ 
   const fetchQuestions = async () => {
 
     try {
@@ -46,7 +46,7 @@ export function MainQuiz() {
       const url =
         `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`
 
-      // ================= SINGLE PLAYER =================
+    
       if (!isMultiplayer) {
 
         const res = await fetch(url)
@@ -56,7 +56,6 @@ export function MainQuiz() {
         return
       }
 
-      // ================= MULTIPLAYER =================
       const roomRef = doc(db, "rooms", roomId)
       const roomSnap = await getDoc(roomRef)
 
@@ -64,13 +63,13 @@ export function MainQuiz() {
 
       const roomData = roomSnap.data()
 
-      // reuse existing questions
+
       if (roomData?.questions?.length > 0) {
         setQuestions(roomData.questions)
         return
       }
 
-      // 🚨 ONLY PLAYER 1 GENERATES QUESTIONS
+   
       if (player === "1") {
 
         const res = await fetch(url)
@@ -88,7 +87,7 @@ export function MainQuiz() {
 
       } else {
 
-        // Player 2 waits for questions
+        
         const interval = setInterval(async () => {
 
           const snap = await getDoc(roomRef)
@@ -107,7 +106,7 @@ export function MainQuiz() {
     }
   }
 
-  // ================= PREVENT DOUBLE FETCH =================
+
   useEffect(() => {
 
     if (hasFetched.current) return
@@ -117,7 +116,7 @@ export function MainQuiz() {
 
   }, [])
 
-  // ================= TIMER =================
+  
   useEffect(() => {
 
     if (showResult) return
@@ -153,7 +152,7 @@ export function MainQuiz() {
 
       const newScore = isCorrect ? prev + 1 : prev
 
-      // MULTIPLAYER UPDATE
+    
       if (isMultiplayer && isCorrect) {
 
         const roomRef = doc(db, "rooms", roomId)
@@ -185,7 +184,7 @@ export function MainQuiz() {
 
   }, [questions, currentQuestion, isMultiplayer, roomId, player])
 
-  // ================= LOADING =================
+  
   if (questions.length === 0) {
     return (
       <div className="loading">
@@ -194,18 +193,19 @@ export function MainQuiz() {
     )
   }
 
-  // ================= UI =================
+  
   return (
     <div className="quiz-page">
 
       {showResult ? (
 
-        <Result
-          roomId={roomId}
-          score={score}
-          total={questions.length}
-          multiplayer={isMultiplayer}
-        />
+       <Result
+  roomId={roomId}
+  score={score}
+  total={questions.length}
+  multiplayer={isMultiplayer}
+  player={player}
+/>
 
       ) : (
 
